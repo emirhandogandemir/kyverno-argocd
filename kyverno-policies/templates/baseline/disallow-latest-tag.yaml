@@ -1,0 +1,14 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: deny-latest-tag
+spec:
+  rules:
+    - name: deny-latest-tag
+      match:
+        resources:
+          kinds:
+            - Pod
+      mutate:
+        excludeImages:
+          - image: "*:latest"
